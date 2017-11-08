@@ -1,0 +1,15 @@
+<p>
+  fertilizers works!
+</p>
+<div class="ferts" *ngFor='let fertilizer of fertilizers; let i = index'>
+  <div>Имя: {{fertilizer.name | uppercase}}</div>
+  <div>Производитель: {{fertilizer.vendor}} </div>
+  <table>
+    <tr>
+      <th *ngFor='let key of fertilizerKeys'>{{key}}</th>
+    </tr>
+    <tr>
+        <td *ngFor='let key of fertilizerKeys'>{{fertilizers[i].composition[key].weightProportion}}</td>
+    </tr>
+  </table>
+</div>
