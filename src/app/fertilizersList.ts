@@ -1,42 +1,61 @@
 import { Fertilizer, IFertilizer } from './fertilizer';
+import { Composistion } from './composition';
 import * as Elements from './Elements';
 
 export interface IFertilizerList {
+    ID?: number;
     name: string;
     culture: string;
     litrage: number;
     list: Fertilizer[];
-    reciepts: any;
-    calc(): Elements.Element[];
+    reciepts?: number;
+    result: Composistion;
+    calc(): Composistion;
     add(fert: Fertilizer);
 }
 
 export class FertilizerList implements IFertilizerList {
-    name: string;
-    culture = 'green';
-    reciepts = [];
-    list = [];
-    litrage: number;
-    constructor(name: string) {
+    static ID = 1;
+    result = new Composistion();
+    ID: number;
+    constructor(
+        public name: string,
+        public list: Fertilizer[] = [],
+        public culture: string = 'green',
+        public litrage: number = 1,
+        public reciepts: number = 2
+    ) {
         this.name = name;
+        this.ID = FertilizerList.ID++;
     }
 
-    add(fert) {
+    get(): Fertilizer[] {
+        return this.list;
+    }
+
+    add(fert: any) {
         if (fert && Array.isArray(fert)) {
             this.list = [...this.list, ...fert];
         } else {
+            if (this.list.length > 0 && this.list.some((value => value.name === fert.name))) {
+                return console.error(`${fert.name}: Запись с таким именем уже имеется`);
+            }
             this.list.push(fert);
         }
+        this.result = this.calc();
     }
 
-    calc() {
+    calc(): Composistion {
         return this.list.reduce((acc, curr) => {
             for (const key in acc) {
-                if (acc.hasOwnProperty(key)) {
-                    acc[key].nutrient += curr.composition[key].nutrient;
+                if (acc[key] instanceof Elements.Element) {
+                    acc[key].nutrient += curr.composition[key].nutrient * curr.amount;
+                    acc[key].weightProportion += curr.composition[key].weightProportion  * curr.amount;
+                    acc[key].nutrient = Math.floor(acc[key].nutrient);
+                    acc[key].weightProportion = Math.floor(acc[key].weightProportion);
                 }
             }
             return acc;
-        }, { N: new Elements.N(0), P: new Elements.P(0), K: new Elements.K(0) });
+        }, new Composistion({ N: new Elements.N(0), P: new Elements.P(0), K: new Elements.K(0) }));
     }
 }

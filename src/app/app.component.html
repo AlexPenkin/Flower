@@ -1,4 +1,19 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-fertilizers></app-fertilizers>
-<app-calculations></app-calculations>
-
+<mat-toolbar (click)="sidenav.toggle()">Flower - when your plants thrives</mat-toolbar>
+<mat-sidenav-container class="example-sidenav-fab-container">
+  <mat-sidenav #sidenav mode="side" opened="false">
+    <mat-list>
+      <mat-list-item> Pepper </mat-list-item>
+      <mat-list-item> Salt </mat-list-item>
+      <mat-list-item> Paprika </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <div class="layout">
+    <mat-card class="categories">
+      <app-fertilizers></app-fertilizers>
+    </mat-card>
+    <mat-card class="content">
+      <app-calculations></app-calculations>
+    </mat-card>
+  </div>
+</mat-sidenav-container>

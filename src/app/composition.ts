@@ -1,4 +1,4 @@
-import {Element, N, P, K} from './Elements';
+import { Element, N, P, K } from './Elements';
 
 export interface IComposition {
     N: Element;
@@ -10,7 +10,7 @@ export class Composistion implements IComposition {
     N = new N(0);
     P = new P(0);
     K = new K(0);
-    constructor(composition?: {N?, P?, K?}) {
+    constructor(composition?: { N?, P?, K?}) {
         if (composition) {
             this.N = composition.N;
             this.P = composition.P;

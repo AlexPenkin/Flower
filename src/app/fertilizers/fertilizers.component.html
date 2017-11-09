@@ -1,7 +1,6 @@
-<p>
-  fertilizers works!
-</p>
-<div class="ferts" *ngFor='let fertilizer of fertilizers; let i = index'>
+<app-select (onSelectOut)="onListSelect($event)" [model]='lists'></app-select>
+
+<mat-card class="ferilizer-card" *ngFor='let fertilizer of currentFertilizers; let i = index'>
   <div>Имя: {{fertilizer.name | uppercase}}</div>
   <div>Производитель: {{fertilizer.vendor}} </div>
   <table>
@@ -9,7 +8,15 @@
       <th *ngFor='let key of fertilizerKeys'>{{key}}</th>
     </tr>
     <tr>
-        <td *ngFor='let key of fertilizerKeys'>{{fertilizers[i].composition[key].weightProportion}}</td>
+      <td *ngFor='let key of fertilizerKeys'>{{fertilizer.composition[key].weightProportion}}</td>
     </tr>
   </table>
+  {{fertilizer.amount}}л.
+  <mat-slider [(ngModel)]='fertilizer.amount' [min]="0" [max]="1000">
+  </mat-slider>
+</mat-card>
+<div class="" *ngIf="currentList">
+  result: N: {{currentList.result.N.nutrient}} P: {{currentList.result.P.nutrient}} K: {{currentList.result.K.nutrient}}
 </div>
+<button mat-button color="primary">Click me!</button>
+<span matTooltip="Сосни залупу!" matTooltipPosition="before">I have a tooltip</span>
