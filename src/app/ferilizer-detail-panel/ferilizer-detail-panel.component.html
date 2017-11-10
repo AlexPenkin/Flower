@@ -1,0 +1,16 @@
+<mat-card class="ferilizer-card">
+  <div>Имя: {{fertilizer.name | uppercase}}</div>
+  <div>Производитель: {{fertilizer.vendor}} </div>
+  <table>
+    <tr>
+      <th *ngFor='let key of fertilizerKeys'>{{key}}</th>
+    </tr>
+    <tr>
+      <td *ngFor='let key of fertilizerKeys'>{{fertilizer.composition[key].weightProportion}}</td>
+    </tr>
+  </table>
+
+  <mat-form-field>
+    <input matInput placeholder="Концетрация" min="0" type="number" [(ngModel)]="fertilizer.amount">
+  </mat-form-field>
+</mat-card>

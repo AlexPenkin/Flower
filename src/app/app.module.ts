@@ -9,6 +9,7 @@ import { FertilizersComponent } from './fertilizers/fertilizers.component';
 import { CalculationsComponent } from './calculations/calculations.component';
 import { FertilizerService } from './fertilizer.service';
 import { SelectComponent } from './select/select.component';
+import { FerilizerDetailPanelComponent } from './ferilizer-detail-panel/ferilizer-detail-panel.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SelectComponent } from './select/select.component';
     AppComponent,
     FertilizersComponent,
     CalculationsComponent,
-    SelectComponent
+    SelectComponent,
+    FerilizerDetailPanelComponent
   ],
   imports: [
     BrowserModule,

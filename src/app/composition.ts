@@ -6,7 +6,7 @@ export interface IComposition {
     K: Element;
 }
 
-export class Composistion implements IComposition {
+export class Composition implements IComposition {
     N = new N(0);
     P = new P(0);
     K = new K(0);

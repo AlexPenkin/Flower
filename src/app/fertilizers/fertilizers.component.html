@@ -1,20 +1,8 @@
 <app-select (onSelectOut)="onListSelect($event)" [model]='lists'></app-select>
 
-<mat-card class="ferilizer-card" *ngFor='let fertilizer of currentFertilizers; let i = index'>
-  <div>Имя: {{fertilizer.name | uppercase}}</div>
-  <div>Производитель: {{fertilizer.vendor}} </div>
-  <table>
-    <tr>
-      <th *ngFor='let key of fertilizerKeys'>{{key}}</th>
-    </tr>
-    <tr>
-      <td *ngFor='let key of fertilizerKeys'>{{fertilizer.composition[key].weightProportion}}</td>
-    </tr>
-  </table>
-  {{fertilizer.amount}}л.
-  <mat-slider [(ngModel)]='fertilizer.amount' [min]="0" [max]="1000">
-  </mat-slider>
-</mat-card>
+<app-ferilizer-detail-panel *ngFor="let ferilizer of currentFertilizerList.list" [fertilizer]="ferilizer">
+
+</app-ferilizer-detail-panel>
 <div class="" *ngIf="currentList">
   result: N: {{currentList.result.N.nutrient}} P: {{currentList.result.P.nutrient}} K: {{currentList.result.K.nutrient}}
 </div>

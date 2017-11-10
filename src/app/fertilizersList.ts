@@ -1,5 +1,5 @@
 import { Fertilizer, IFertilizer } from './fertilizer';
-import { Composistion } from './composition';
+import { Composition } from './composition';
 import * as Elements from './Elements';
 
 export interface IFertilizerList {
@@ -9,14 +9,14 @@ export interface IFertilizerList {
     litrage: number;
     list: Fertilizer[];
     reciepts?: number;
-    result: Composistion;
-    calc(): Composistion;
+    result: Composition;
+    calc(): Composition;
     add(fert: Fertilizer);
 }
 
 export class FertilizerList implements IFertilizerList {
     static ID = 1;
-    result = new Composistion();
+    result = new Composition();
     ID: number;
     constructor(
         public name: string,
@@ -45,7 +45,7 @@ export class FertilizerList implements IFertilizerList {
         this.result = this.calc();
     }
 
-    calc(): Composistion {
+    calc(): Composition {
         return this.list.reduce((acc, curr) => {
             for (const key in acc) {
                 if (acc[key] instanceof Elements.Element) {
@@ -56,6 +56,6 @@ export class FertilizerList implements IFertilizerList {
                 }
             }
             return acc;
-        }, new Composistion({ N: new Elements.N(0), P: new Elements.P(0), K: new Elements.K(0) }));
+        }, new Composition({ N: new Elements.N(0), P: new Elements.P(0), K: new Elements.K(0) }));
     }
 }

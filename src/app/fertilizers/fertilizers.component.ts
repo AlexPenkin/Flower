@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
 import { Fertilizer, IFertilizer } from '../fertilizer';
 import { FertilizerService } from '../fertilizer.service';
 import { IFertilizerList, FertilizerList } from '../fertilizersList';
-import { Composistion } from '../composition';
+import { Composition } from '../composition';
 
 @Component({
   selector: 'app-fertilizers',
@@ -12,22 +13,18 @@ import { Composistion } from '../composition';
 
 })
 export class FertilizersComponent implements OnInit {
-  currentFertilizers: Fertilizer[];
-  fertilizer: Fertilizer;
+  currentFertilizerList: FertilizerList;
   lists: FertilizerList[];
-  currentList: FertilizerList;
   fertilizerKeys: any;
   constructor(private fertilizerService: FertilizerService) {
     this.lists = this.fertilizerService.getLists();
-    this.currentFertilizers = this.lists[0].list;
-    this.fertilizerKeys = Object.keys(new Composistion());
-    this.currentList = this.lists[0];
+    this.currentFertilizerList = this.fertilizerService.currentList;
+    this.fertilizerKeys = Object.keys(new Composition());
   }
   ngOnInit() {
   }
 
   onListSelect(val) {
-    this.currentList = this.lists.find((el) => el.ID === Number(val));
-    this.currentFertilizers = this.currentList.get();
+    this.currentFertilizerList = this.lists.find((el) => el.ID === Number(val));
   }
 }

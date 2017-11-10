@@ -1,4 +1,4 @@
-import { IComposition, Composistion } from './composition';
+import { IComposition, Composition } from './composition';
 
 export interface IFertilizer {
     ID?: number;
@@ -19,7 +19,7 @@ export class Fertilizer implements IFertilizer {
         this.name = name;
         this.ID = Fertilizer.ID++;
         this.vendor = vendor || '';
-        this.composition = composition || new Composistion();
+        this.composition = composition || new Composition();
     }
 
 }
