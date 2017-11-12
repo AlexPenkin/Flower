@@ -46,7 +46,7 @@ export class FertilizerList implements IFertilizerList {
     }
 
     calc(): Composition {
-        return this.list.reduce((acc, curr) => {
+        const result: Composition = this.list.reduce((acc, curr) => {
             for (const key in acc) {
                 if (acc[key] instanceof Elements.Element) {
                     acc[key].nutrient += curr.composition[key].nutrient * curr.amount;
@@ -57,5 +57,12 @@ export class FertilizerList implements IFertilizerList {
             }
             return acc;
         }, new Composition({ N: new Elements.N(0), P: new Elements.P(0), K: new Elements.K(0) }));
+
+        for (const key in result) {
+            if (result[key] instanceof Elements.Element) {
+                result[key].nutrient = Number(this.litrage) * Number(result[key].nutrient);
+            }
+        }
+        return result;
     }
 }

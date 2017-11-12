@@ -1,10 +1,9 @@
 <app-select (onSelectOut)="onListSelect($event)" [model]='lists'></app-select>
 
-<app-ferilizer-detail-panel *ngFor="let ferilizer of currentFertilizerList.list" [fertilizer]="ferilizer">
+<app-ferilizer-detail-panel class='fertilizers-panel' *ngFor="let ferilizer of fertilizers$ | async" [fertilizer]="ferilizer">
 
 </app-ferilizer-detail-panel>
-<div class="" *ngIf="currentList">
-  result: N: {{currentList.result.N.nutrient}} P: {{currentList.result.P.nutrient}} K: {{currentList.result.K.nutrient}}
-</div>
-<button mat-button color="primary">Click me!</button>
-<span matTooltip="Сосни залупу!" matTooltipPosition="before">I have a tooltip</span>
+
+<mat-form-field >
+    <input matInput placeholder="Литраж" min="0" type="number" [(ngModel)]="currentList.litrage" (ngModelChange)=onLitrageChange()>
+</mat-form-field>

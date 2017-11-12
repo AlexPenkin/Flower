@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+
+.mat-tooltip {
+    height: auto;
+    white-space: pre;
+}
+
+.categories .ferilizer-card .mat-form-field-infix {
+    width: 73px;
+}
+
+.categories .panel-select .mat-form-field-infix {
+    width: 61px;
+}

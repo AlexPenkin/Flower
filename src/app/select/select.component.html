@@ -1,8 +1,8 @@
-<p (click)="onSelect('select works')">
-  select works!
-</p>
-<select (change)="onSelect($event.target.value)" [(ngModel)]="selectedValue">
-  <option *ngFor="let item of model; let i = index" [value]="item.ID">
-    {{item.name}}
-  </option>
-</select>
+
+<mat-form-field class="panel-select">
+  <mat-select placeholder="Удобрение" (selectionChange)="onSelect($event)" [(ngModel)]="selectedValue">
+    <mat-option *ngFor="let item of model; let i = index" [value]="item.ID">
+      {{item.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

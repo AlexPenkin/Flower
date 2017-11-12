@@ -15,11 +15,18 @@ export class Fertilizer implements IFertilizer {
     name: string;
     vendor: string;
     composition: IComposition;
-    constructor(name: string, vendor?: string, composition?: IComposition, public amount: number = 1) {
+    constructor(name: string, vendor?: string, composition?: IComposition, private _amount: number = 1) {
         this.name = name;
         this.ID = Fertilizer.ID++;
         this.vendor = vendor || '';
         this.composition = composition || new Composition();
+    }
+
+    set amount(value) {
+        this._amount = value;
+    }
+    get amount() {
+        return this._amount;
     }
 
 }

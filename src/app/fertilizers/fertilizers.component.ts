@@ -1,30 +1,40 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewChecked } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
-import { Fertilizer, IFertilizer } from '../fertilizer';
-import { FertilizerService } from '../fertilizer.service';
-import { IFertilizerList, FertilizerList } from '../fertilizersList';
-import { Composition } from '../composition';
+import { Fertilizer, IFertilizer } from '../models/fertilizer';
+import { FertilizerService } from '../services/fertilizer.service';
+import { IFertilizerList, FertilizerList } from '../models/fertilizersList';
+import { Composition } from '../models/composition';
 
 @Component({
   selector: 'app-fertilizers',
   templateUrl: './fertilizers.component.html',
   styleUrls: ['./fertilizers.component.css'],
   preserveWhitespaces: false
-
 })
 export class FertilizersComponent implements OnInit {
-  currentFertilizerList: FertilizerList;
+  currentList: FertilizerList;
   lists: FertilizerList[];
   fertilizerKeys: any;
+  fertilizers$: Observable<Fertilizer[]>;
   constructor(private fertilizerService: FertilizerService) {
-    this.lists = this.fertilizerService.getLists();
-    this.currentFertilizerList = this.fertilizerService.currentList;
+    this.fertilizers$ = this.fertilizerService.currentList$.map(val => val.list);
     this.fertilizerKeys = Object.keys(new Composition());
-  }
-  ngOnInit() {
+    this.currentList = this.fertilizerService.currentList;
+    this.lists = this.fertilizerService.lists;
+    this.onListSelect(this.fertilizerService.currentList.ID);
   }
 
-  onListSelect(val) {
-    this.currentFertilizerList = this.lists.find((el) => el.ID === Number(val));
+  ngOnInit() {
+
   }
+
+  onLitrageChange() {
+    this.fertilizerService.calcCurrentList();
+  }
+
+  onListSelect(id: number) {
+    this.fertilizerService.setCurrentList(id);
+  }
+
 }

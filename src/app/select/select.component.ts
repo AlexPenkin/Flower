@@ -12,9 +12,9 @@ export class SelectComponent implements OnInit {
   @Output() onSelectOut = new EventEmitter<number>();
   selectedValue = 1;
 
-  onSelect(val: number): void {
-    this.onSelectOut.emit(val);
-    this.selectedValue = val;
+  onSelect({ value }): void {
+    this.onSelectOut.emit(value);
+    this.selectedValue = value;
   }
 
   ngOnInit() {
