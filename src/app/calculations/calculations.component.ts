@@ -13,13 +13,13 @@ export class CalculationsComponent implements OnInit {
   keys: string[];
 
   constructor(private fertilizerService: FertilizerService) {
-    fertilizerService.currentList$.map(list => list.result).subscribe(result => {
-      this.result = result;
-    });
+    fertilizerService.currentList$
+      .map(list => list.result)
+      .subscribe(result => {
+        this.result = result;
+      });
     this.keys = fertilizerService.getAllKnownElements();
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
