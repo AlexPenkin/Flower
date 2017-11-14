@@ -2,6 +2,7 @@ export interface IElement {
     molarMass: number;
     weightProportion: number;
     nutrient: number;
+    coefficient: number;
     calcNutrient(): number;
     calcWeightProportion(): number;
 }
@@ -10,13 +11,14 @@ export class Element implements IElement {
     molarMass: number;
     weightProportion: number;
     nutrient: number;
+    coefficient = 1;
 
     calcNutrient(): number {
-        return this.weightProportion;
+        return this.weightProportion * this.coefficient;
     }
 
     calcWeightProportion(): number {
-        return this.nutrient;
+        return this.nutrient / this.coefficient;
     }
 }
 
@@ -35,6 +37,7 @@ export class P extends Element {
     molarMass = 30.973762;
     weightProportion = 0;
     nutrient = 0;
+    coefficient = 0.41;
     constructor(value: number) {
         super();
         this.weightProportion = value;
@@ -46,6 +49,7 @@ export class K extends Element {
     molarMass = 39.0983;
     weightProportion = 0;
     nutrient = 0;
+    coefficient = 0.84;
     constructor(value: number) {
         super();
         this.weightProportion = value;

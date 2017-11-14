@@ -1,6 +1,6 @@
 import { Fertilizer, IFertilizer } from './fertilizer';
 import { Composition } from './composition';
-import * as Elements from './Elements';
+import * as elements from './Elements';
 
 export interface IFertilizerList {
     ID?: number;
@@ -48,13 +48,13 @@ export class FertilizerList implements IFertilizerList {
     calc(): Composition {
         return  this.list.reduce((acc, curr) => {
             for (const key in acc) {
-                if (acc[key] instanceof Elements.Element) {
+                if (acc[key] instanceof elements.Element) {
                     acc[key].nutrient += curr.composition[key].nutrient * curr.amount;
                     acc[key].weightProportion += curr.composition[key].weightProportion  * curr.amount;
                 }
             }
             curr.requiredAmount = curr.amount * this.litrage;
             return acc;
-        }, new Composition({ N: new Elements.N(0), P: new Elements.P(0), K: new Elements.K(0) }));
+        }, new Composition({ N: new elements.N(0), P: new elements.P(0), K: new elements.K(0) }));
     }
 }

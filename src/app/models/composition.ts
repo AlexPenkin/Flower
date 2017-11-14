@@ -1,42 +1,52 @@
-import { Element, N, P, K, Ca, Mg, Fe, S, B, Co, Cu, Mn, Mo,  Zn } from './Elements';
+import { Element, N, P, K, Ca, Mg, Fe, S, B, Co, Cu, Mn, Mo, Zn } from './Elements';
+import * as elements from './Elements';
 
 export interface IComposition {
-    N?: Element;
-    P?: Element;
-    K?: Element;
-    Ca?: Element;
-    Mg?: Element;
-    S?: Element;
-    Fe?: Element;
-    B?: Element;
-    Co?: Element;
-    Cu?: Element;
-    Mn?: Element;
-    Mo?: Element;
-    Zn?: Element;
+    N: Element;
+    P: Element;
+    K: Element;
+    Ca: Element;
+    Mg: Element;
+    S: Element;
+    Fe: Element;
+    B: Element;
+    Co: Element;
+    Cu: Element;
+    Mn: Element;
+    Mo: Element;
+    Zn: Element;
 }
 
 export class Composition implements IComposition {
-    N = new N(0);
-    P = new P(0);
-    K = new K(0);
-    Ca = new Ca(0);
-    Mg = new Mg(0);
-    S = new S(0);
-    Fe = new Fe(0);
-    B = new B(0);
-    Co = new Co(0);
-    Cu = new Cu(0);
-    Mn = new Mn(0);
-    Mo = new Mo(0);
-    Zn = new Zn(0);
+    N: Element;
+    P: Element;
+    K: Element;
+    Ca: Element;
+    Mg: Element;
+    S: Element;
+    Fe: Element;
+    B: Element;
+    Co: Element;
+    Cu: Element;
+    Mn: Element;
+    Mo: Element;
+    Zn: Element;
     constructor(composition?: IComposition) {
         if (composition) {
-            for (const key in composition) {
-                if (composition[key]) {
-                    this[key] = composition[key];
+            for (const key in elements) {
+                if (key.length < 3) {
+                    if (composition[key]) {
+                        this[key] = new elements[key](composition[key].weightProportion);
+                    } else {
+                        this[key] = new elements[key](0);
+                    }
                 }
-
+            }
+        } else {
+            for (const key in elements) {
+                if (key.length < 3) {
+                    this[key] = new elements[key](0);
+                }
             }
         }
     }

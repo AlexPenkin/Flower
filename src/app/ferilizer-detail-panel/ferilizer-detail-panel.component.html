@@ -1,8 +1,8 @@
 <mat-card class="ferilizer-card">
-  <div matTooltip={{composition}} matTooltipPosition="before">Имя: {{fertilizer.name | uppercase}}</div>
-  <div>Производитель: {{fertilizer.vendor}} </div>
-  <mat-form-field >
-    <input matInput placeholder="Концетрация" min="0" type="number" [(ngModel)]="fertilizer.amount" (ngModelChange)=onChange($event)>
-  </mat-form-field>
-  <div class="requred-amount">Нужное кол-во: {{fertilizer.requiredAmount | number:'1.0-3'}}</div>
+    <div matTooltip={{composition}} matTooltipPosition="before">Имя: {{fertilizer.name | uppercase}}</div>
+    <div>Производитель: {{fertilizer.vendor}} </div>
+    <mat-form-field>
+        <input matInput placeholder="Концетрация" min="0" type="number" [(ngModel)]="fertilizer.amount" (ngModelChange)=onChange($event)>
+    </mat-form-field>
+    <div class="requred-amount">Нужное кол-во: {{fertilizer.requiredAmount | number:'1.0-3'}}г</div>
 </mat-card>
