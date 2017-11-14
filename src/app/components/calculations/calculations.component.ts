@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Fertilizer } from '../models/fertilizer';
-import { FertilizerService } from '../services/fertilizer.service';
-import { Composition } from '../models/composition';
+import { Fertilizer } from '../../models/fertilizer';
+import { FertilizerService } from '../../services/fertilizer.service';
+import { Composition } from '../../models/composition';
 @Component({
   selector: 'app-calculations',
   templateUrl: './calculations.component.html',

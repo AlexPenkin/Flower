@@ -5,11 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
 import { AppComponent } from './app.component';
-import { FertilizersComponent } from './fertilizers/fertilizers.component';
-import { CalculationsComponent } from './calculations/calculations.component';
+import { FertilizersComponent } from './components/fertilizers/fertilizers.component';
+import { CalculationsComponent } from './components/calculations/calculations.component';
 import { FertilizerService } from './services/fertilizer.service';
-import { SelectComponent } from './select/select.component';
-import { FerilizerDetailPanelComponent } from './ferilizer-detail-panel/ferilizer-detail-panel.component';
+import { SelectComponent } from './components/select/select.component';
+import { FerilizerDetailPanelComponent } from './components/ferilizer-detail-panel/ferilizer-detail-panel.component';
 
 @NgModule({
   declarations: [

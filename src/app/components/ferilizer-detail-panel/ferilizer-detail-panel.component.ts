@@ -1,6 +1,6 @@
 import { Component, AfterContentInit, Input } from '@angular/core';
-import { FertilizerService } from '../services/fertilizer.service';
-import { Fertilizer } from '../models/fertilizer';
+import { FertilizerService } from '../../services/fertilizer.service';
+import { Fertilizer } from '../../models/fertilizer';
 
 @Component({
   selector: 'app-ferilizer-detail-panel',
