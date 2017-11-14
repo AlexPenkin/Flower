@@ -2,35 +2,22 @@ import { Element, N, P, K, Ca, Mg, Fe, S, B, Co, Cu, Mn, Mo, Zn } from './Elemen
 import * as elements from './Elements';
 
 export interface IComposition {
-    N: Element;
-    P: Element;
-    K: Element;
-    Ca: Element;
-    Mg: Element;
-    S: Element;
-    Fe: Element;
-    B: Element;
-    Co: Element;
-    Cu: Element;
-    Mn: Element;
-    Mo: Element;
-    Zn: Element;
+    N?: Element;
+    P?: Element;
+    K?: Element;
+    Ca?: Element;
+    Mg?: Element;
+    S?: Element;
+    Fe?: Element;
+    B?: Element;
+    Co?: Element;
+    Cu?: Element;
+    Mn?: Element;
+    Mo?: Element;
+    Zn?: Element;
 }
 
 export class Composition implements IComposition {
-    N: Element;
-    P: Element;
-    K: Element;
-    Ca: Element;
-    Mg: Element;
-    S: Element;
-    Fe: Element;
-    B: Element;
-    Co: Element;
-    Cu: Element;
-    Mn: Element;
-    Mo: Element;
-    Zn: Element;
     constructor(composition?: IComposition) {
         if (composition) {
             for (const key in elements) {

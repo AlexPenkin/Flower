@@ -1,6 +1,6 @@
 <mat-card class="ferilizer-card">
     <div matTooltip={{composition}} matTooltipPosition="before">Имя: {{fertilizer.name | uppercase}}</div>
-    <div>Производитель: {{fertilizer.vendor}} </div>
+    <div *ngIf="fertilizer.vendor">Производитель: {{fertilizer.vendor}} </div>
     <mat-form-field>
         <input matInput placeholder="Концетрация" min="0" type="number" [(ngModel)]="fertilizer.amount" (ngModelChange)=onChange($event)>
     </mat-form-field>

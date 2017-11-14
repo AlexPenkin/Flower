@@ -33,7 +33,7 @@ export class FertilizersComponent implements OnInit {
     });
     const comp = new FertilizerList('666');
     comp.add(
-      new Fertilizer('МФК', '2 22', new Composition({ N: new N(121), P: new P(80), K: new K(160) }))
+      new Fertilizer('МФК', '', new Composition({ N: new N(121), P: new P(80), K: new K(160) }))
     );
     this.fertilizerService.addFertilizerList(comp);
   }
@@ -44,6 +44,7 @@ export class FertilizersComponent implements OnInit {
 
   onListSelect(id: number) {
     this.fertilizerService.setCurrentList(id);
+    console.log(this.currentList)
   }
 
 }
