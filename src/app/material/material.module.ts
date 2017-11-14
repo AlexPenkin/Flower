@@ -49,4 +49,4 @@ import {
     MatTableModule
   ]
 })
-export class MaterialModule { }
+export class MaterialModule {}

@@ -14,16 +14,17 @@ export class FerilizerDetailPanelComponent implements AfterContentInit {
 
   constructor(private fertilizerService: FertilizerService) {
     this.fertilizerKeys = fertilizerService.getAllKnownElements();
-   }
-
-   onChange(e) {
-     this.fertilizerService.calcCurrentList();
-   }
-
-   ngAfterContentInit() {
-    this.composition = this.fertilizerKeys.reduce((acc, curr) => {
-      return `${acc} \n ${curr}: ${this.fertilizer.composition[curr].weightProportion}`;
-    }, 'Содержит: ');
   }
 
+  onChange(e) {
+    this.fertilizerService.calcCurrentList();
+  }
+
+  ngAfterContentInit() {
+    this.composition = this.fertilizerKeys.reduce((acc, curr) => {
+      return `${acc} \n ${curr}: ${
+        this.fertilizer.composition[curr].weightProportion
+      }`;
+    }, 'Содержит: ');
+  }
 }

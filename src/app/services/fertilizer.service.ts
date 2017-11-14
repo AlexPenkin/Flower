@@ -10,7 +10,6 @@ import { Composition } from '../models/composition';
 
 @Injectable()
 export class FertilizerService {
-
   fertilizers: Fertilizer[] = [];
   lists: FertilizerList[] = [];
   lists$: Subject<FertilizerList>;
@@ -19,47 +18,101 @@ export class FertilizerService {
   fertilizerListTwo: FertilizerList = new FertilizerList('Test2');
   fertilizerKeys: string[] = [];
   currentList: FertilizerList;
-  currentList$: BehaviorSubject<FertilizerList> = new BehaviorSubject<FertilizerList>(this.currentList);
+  currentList$: BehaviorSubject<FertilizerList> = new BehaviorSubject<
+    FertilizerList
+  >(this.currentList);
 
   constructor() {
     this.fertilizer.add(
-      new Fertilizer('Буйский хуй', 'Буйский завод', new Composition({ N: new N(100), P: new P(100), K: new K(100) }))
+      new Fertilizer(
+        'Буйский хуй',
+        'Буйский завод',
+        new Composition({ N: new N(100), P: new P(100), K: new K(100) })
+      )
     );
     this.fertilizerList.add(
-      new Fertilizer('Буйский хуй', 'Буйский завод', new Composition({ N: new N(100), P: new P(100), K: new K(100) }))
+      new Fertilizer(
+        'Буйский хуй',
+        'Буйский завод',
+        new Composition({ N: new N(100), P: new P(100), K: new K(100) })
+      )
     );
     this.fertilizerList.add(
-      new Fertilizer('Calcium', 'Valagro', new Composition({ N: new N(200), P: new P(40), K: new K(155) }))
+      new Fertilizer(
+        'Calcium',
+        'Valagro',
+        new Composition({ N: new N(200), P: new P(40), K: new K(155) })
+      )
     );
     this.fertilizerList.add(
-      new Fertilizer('МФК', 'Советская залупа', new Composition({ N: new N(121), P: new P(80), K: new K(160) }))
+      new Fertilizer(
+        'МФК',
+        'Советская залупа',
+        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
+      )
     );
     this.fertilizerList.add(
-      new Fertilizer('МФК', 'Советская залупа', new Composition({ N: new N(121), P: new P(80), K: new K(160) }))
+      new Fertilizer(
+        'МФК',
+        'Советская залупа',
+        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
+      )
     );
     this.fertilizerList.add(
-      new Fertilizer('МФК2', 'Советская залупа', new Composition({ N: new N(121), P: new P(80), K: new K(160) }))
+      new Fertilizer(
+        'МФК2',
+        'Советская залупа',
+        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
+      )
     );
     this.fertilizerList.add(
-      new Fertilizer('Буйский хуй', 'Буйский завод', new Composition({ N: new N(100), P: new P(100), K: new K(100) }))
+      new Fertilizer(
+        'Буйский хуй',
+        'Буйский завод',
+        new Composition({ N: new N(100), P: new P(100), K: new K(100) })
+      )
     );
     this.fertilizerListTwo.add(
-      new Fertilizer('Вонючий хуй', 'Буйский завод', new Composition({ N: new N(100), P: new P(100), K: new K(100) }))
+      new Fertilizer(
+        'Вонючий хуй',
+        'Буйский завод',
+        new Composition({ N: new N(100), P: new P(100), K: new K(100) })
+      )
     );
     this.fertilizerListTwo.add(
-      new Fertilizer('Calcium пизда', 'Valagro', new Composition({ N: new N(200), P: new P(40), K: new K(155) }))
+      new Fertilizer(
+        'Calcium пизда',
+        'Valagro',
+        new Composition({ N: new N(200), P: new P(40), K: new K(155) })
+      )
     );
     this.fertilizerListTwo.add(
-      new Fertilizer('МФК Хуй', 'Советская залупа', new Composition({ N: new N(121), P: new P(80), K: new K(160) }))
+      new Fertilizer(
+        'МФК Хуй',
+        'Советская залупа',
+        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
+      )
     );
     this.fertilizerListTwo.add(
-      new Fertilizer('МФК ыыы', 'Советская залупа', new Composition({ N: new N(121), P: new P(80), K: new K(160) }))
+      new Fertilizer(
+        'МФК ыыы',
+        'Советская залупа',
+        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
+      )
     );
     this.fertilizerListTwo.add(
-      new Fertilizer('Мыыыыы', 'Советская залупа', new Composition({ N: new N(121), P: new P(80), K: new K(160) }))
+      new Fertilizer(
+        'Мыыыыы',
+        'Советская залупа',
+        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
+      )
     );
     this.fertilizerListTwo.add(
-      new Fertilizer('Буйский хуй', 'Буйский завод', new Composition({ N: new N(666), P: new P(100), K: new K(100) }))
+      new Fertilizer(
+        'Буйский хуй',
+        'Буйский завод',
+        new Composition({ N: new N(666), P: new P(100), K: new K(100) })
+      )
     );
     this.addFertilizerList(this.fertilizer);
     this.addFertilizerList(this.fertilizerList);
@@ -68,7 +121,7 @@ export class FertilizerService {
   }
 
   setCurrentList(id: number) {
-    this.currentList = this.lists.find((el) => el.ID === Number(id));
+    this.currentList = this.lists.find(el => el.ID === Number(id));
     this.currentList$.next(this.currentList);
   }
 

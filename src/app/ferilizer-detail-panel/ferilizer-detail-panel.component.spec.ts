@@ -6,12 +6,13 @@ describe('FerilizerDetailPanelComponent', () => {
   let component: FerilizerDetailPanelComponent;
   let fixture: ComponentFixture<FerilizerDetailPanelComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FerilizerDetailPanelComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [FerilizerDetailPanelComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FerilizerDetailPanelComponent);
