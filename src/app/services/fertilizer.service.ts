@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, ObservableInput } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import { Fertilizer } from '../models/fertilizer';
 import { Element, N, P, K } from '../models/Elements';
@@ -12,6 +13,7 @@ export class FertilizerService {
 
   fertilizers: Fertilizer[] = [];
   lists: FertilizerList[] = [];
+  lists$: Subject<FertilizerList>;
   fertilizer: FertilizerList = new FertilizerList('1');
   fertilizerList: FertilizerList = new FertilizerList('Test');
   fertilizerListTwo: FertilizerList = new FertilizerList('Test2');
@@ -59,9 +61,9 @@ export class FertilizerService {
     this.fertilizerListTwo.add(
       new Fertilizer('Буйский хуй', 'Буйский завод', new Composition({ N: new N(666), P: new P(100), K: new K(100) }))
     );
-    this.lists.push(this.fertilizer);
-    this.lists.push(this.fertilizerList);
-    this.lists.push(this.fertilizerListTwo);
+    this.addFertilizerList(this.fertilizer);
+    this.addFertilizerList(this.fertilizerList);
+    this.addFertilizerList(this.fertilizerListTwo);
     this.currentList = this.lists[0];
   }
 
@@ -72,6 +74,10 @@ export class FertilizerService {
 
   getAllKnownElements() {
     return Object.keys(new Composition());
+  }
+
+  addFertilizerList(list: FertilizerList) {
+    this.lists.push(list);
   }
 
   // Calculate current list in nutrient and set in Result attribute in FertilizerList class

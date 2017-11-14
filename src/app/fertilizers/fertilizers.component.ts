@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewChecked } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Element, N, P, K } from '../models/Elements';
 
 import { Fertilizer, IFertilizer } from '../models/fertilizer';
 import { FertilizerService } from '../services/fertilizer.service';
@@ -15,6 +16,7 @@ import { Composition } from '../models/composition';
 export class FertilizersComponent implements OnInit {
   currentList: FertilizerList;
   lists: FertilizerList[];
+  litrage: number;
   fertilizerKeys: any;
   fertilizers$: Observable<Fertilizer[]>;
   constructor(private fertilizerService: FertilizerService) {
@@ -26,7 +28,14 @@ export class FertilizersComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.fertilizerService.currentList$.subscribe(list => {
+      this.currentList = list;
+    });
+    const comp = new FertilizerList('666');
+    comp.add(
+      new Fertilizer('МФК', '2 22', new Composition({ N: new N(121), P: new P(80), K: new K(160) }))
+    );
+    this.fertilizerService.addFertilizerList(comp);
   }
 
   onLitrageChange() {

@@ -1,5 +1,5 @@
 export interface IElement {
-    MolarMass: number;
+    molarMass: number;
     weightProportion: number;
     nutrient: number;
     calcNutrient(): number;
@@ -7,7 +7,7 @@ export interface IElement {
 }
 
 export class Element implements IElement {
-    MolarMass: number;
+    molarMass: number;
     weightProportion: number;
     nutrient: number;
 
@@ -21,7 +21,7 @@ export class Element implements IElement {
 }
 
 export class N extends Element {
-    MolarMass = 14.0067;
+    molarMass = 14.0067;
     weightProportion = 0;
     nutrient = 0;
     constructor(value: number) {
@@ -29,37 +29,21 @@ export class N extends Element {
         this.weightProportion = value;
         this.nutrient = value;
     }
-
-    calcNutrient(): number {
-        return this.weightProportion;
-    }
-
-    calcWeightProportion(): number {
-        return this.nutrient;
-    }
 }
 
 export class P extends Element {
-    MolarMass = 30.973762;
+    molarMass = 30.973762;
     weightProportion = 0;
     nutrient = 0;
     constructor(value: number) {
         super();
         this.weightProportion = value;
         this.nutrient = this.calcNutrient();
-    }
-
-    calcNutrient() {
-        return this.weightProportion * 0.43;
-    }
-
-    calcWeightProportion() {
-        return this.nutrient / 0.43;
     }
 }
 
 export class K extends Element {
-    MolarMass = 39.0983;
+    molarMass = 39.0983;
     weightProportion = 0;
     nutrient = 0;
     constructor(value: number) {
@@ -67,13 +51,115 @@ export class K extends Element {
         this.weightProportion = value;
         this.nutrient = this.calcNutrient();
     }
+}
 
-    calcNutrient() {
-        return this.weightProportion * 0.82;
-    }
-
-    calcWeightProportion() {
-        return this.nutrient / 0.82;
+export class Ca extends Element {
+    molarMass = 40.078;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
     }
 }
 
+export class Mg extends Element {
+    molarMass = 24.307;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
+    }
+}
+
+export class S extends Element {
+    molarMass = 32.059;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
+    }
+}
+
+export class Fe extends Element {
+    molarMass = 55.847;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
+    }
+}
+
+
+export class B extends Element {
+    molarMass = 10.806;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
+    }
+}
+
+export class Mn extends Element {
+    molarMass = 54.938045;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
+    }
+}
+
+export class Zn extends Element {
+    molarMass = 65.38;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
+    }
+}
+
+export class Cu extends Element {
+    molarMass = 63.546;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
+    }
+}
+
+export class Co extends Element {
+    molarMass = 58.933194;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
+    }
+}
+
+export class Mo extends Element {
+    molarMass = 95.96;
+    weightProportion = 0;
+    nutrient = 0;
+    constructor(value: number) {
+        super();
+        this.weightProportion = value;
+        this.nutrient = this.calcNutrient();
+    }
+}

@@ -4,4 +4,5 @@
   <mat-form-field >
     <input matInput placeholder="Концетрация" min="0" type="number" [(ngModel)]="fertilizer.amount" (ngModelChange)=onChange($event)>
   </mat-form-field>
+  <div class="requred-amount">Нужное кол-во: {{fertilizer.requiredAmount | number:'1.0-3'}}</div>
 </mat-card>

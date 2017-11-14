@@ -1,7 +1,7 @@
 
 <mat-form-field class="panel-select">
-  <mat-select placeholder="Удобрение" (selectionChange)="onSelect($event)" [(ngModel)]="selectedValue">
-    <mat-option *ngFor="let item of model; let i = index" [value]="item.ID">
+  <mat-select placeholder="Набор" (selectionChange)="onSelect($event)" [(ngModel)]="selectedValue">
+    <mat-option *ngFor="let item of model" [value]="item.ID">
       {{item.name}}
     </mat-option>
   </mat-select>

@@ -46,23 +46,15 @@ export class FertilizerList implements IFertilizerList {
     }
 
     calc(): Composition {
-        const result: Composition = this.list.reduce((acc, curr) => {
+        return  this.list.reduce((acc, curr) => {
             for (const key in acc) {
                 if (acc[key] instanceof Elements.Element) {
                     acc[key].nutrient += curr.composition[key].nutrient * curr.amount;
                     acc[key].weightProportion += curr.composition[key].weightProportion  * curr.amount;
-                    acc[key].nutrient = Math.floor(acc[key].nutrient);
-                    acc[key].weightProportion = Math.floor(acc[key].weightProportion);
                 }
             }
+            curr.requiredAmount = curr.amount * this.litrage;
             return acc;
         }, new Composition({ N: new Elements.N(0), P: new Elements.P(0), K: new Elements.K(0) }));
-
-        for (const key in result) {
-            if (result[key] instanceof Elements.Element) {
-                result[key].nutrient = Number(this.litrage) * Number(result[key].nutrient);
-            }
-        }
-        return result;
     }
 }

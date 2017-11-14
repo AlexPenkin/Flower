@@ -9,7 +9,7 @@
     </thead>
     <tr>
       <td *ngFor="let key of keys">
-        {{result[key].nutrient}}
+        {{result[key].nutrient | number:'1.0-2'}}
       </td>
     </tr>
   </table>
