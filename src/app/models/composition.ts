@@ -38,14 +38,6 @@ export class Composition implements IComposition {
                 }
 
             }
-            // this.N = composition.N;
-            // this.P = composition.P;
-            // this.Ca = composition.Ca;
-            // this.Mg = composition.Mg;
-            // this.S = composition.S;
-            // this.Fe = composition.Fe;
-            // this.K = composition.K;
-            // this.K = composition.K;
         }
     }
 }
