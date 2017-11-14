@@ -44,7 +44,6 @@ export class FertilizersComponent implements OnInit {
 
   onListSelect(id: number) {
     this.fertilizerService.setCurrentList(id);
-    console.log(this.currentList)
   }
 
 }
