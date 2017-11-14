@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Element, N, P, K } from '../models/Elements';
-
 import { Fertilizer, IFertilizer } from '../models/fertilizer';
 import { FertilizerService } from '../services/fertilizer.service';
 import { IFertilizerList, FertilizerList } from '../models/fertilizersList';
