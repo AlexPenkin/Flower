@@ -18,6 +18,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { AddFerilizerComponent } from './components/add-ferilizer/add-ferilizer.component';
 import { FertilizersAllComponent } from './components/fertilizers-all/fertilizers-all.component';
 import { FertilizersComponent } from './components/fertilizers/fertilizers.component';
+import { FerilizersSetsAllComponent } from './components/ferilizers-sets-all/ferilizers-sets.component';
+import { FerilizersSetsComponent } from './components/ferilizers-sets/ferilizers-sets.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { FertilizersComponent } from './components/fertilizers/fertilizers.compo
     LayoutComponent,
     AddFerilizerComponent,
     FertilizersAllComponent,
-    FertilizersComponent
+    FertilizersComponent,
+    FerilizersSetsAllComponent,
+    FerilizersSetsComponent
   ],
   imports: [
     BrowserModule,

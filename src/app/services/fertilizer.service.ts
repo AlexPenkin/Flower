@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ObservableInput } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
@@ -137,7 +138,6 @@ export class FertilizerService {
   // Add new fertilizer to all known fertilizers
   addNewFertilizer(fertilizer: Fertilizer): void {
     this.fertilizers.push(fertilizer);
-    console.log(this.fertilizers)
   }
 
   // Calculate current list in nutrient and set in Result attribute in FertilizerList class
@@ -152,5 +152,9 @@ export class FertilizerService {
 
   getLists(): FertilizerList[] {
     return this.lists;
+  }
+
+  getRxLists(): Observable<FertilizerList[]> {
+    return Observable.of(this.lists);
   }
 }

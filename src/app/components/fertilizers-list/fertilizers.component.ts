@@ -37,15 +37,6 @@ export class FertilizersListComponent implements OnInit {
     this.fertilizerService.currentList$.subscribe(list => {
       this.currentList = list;
     });
-    const comp = new FertilizerList('666');
-    comp.add(
-      new Fertilizer(
-        'МФК',
-        '',
-        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
-      )
-    );
-    this.fertilizerService.addFertilizerList(comp);
   }
 
   onLitrageChange() {
