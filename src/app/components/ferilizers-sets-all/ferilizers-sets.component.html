@@ -1,5 +1,5 @@
 <mat-card class="categories">
-    <app-ferilizers-sets></app-ferilizers-sets>
+    <app-ferilizers-sets [lists]="lists$ | async" (listSelected)="onListSelected($event)"></app-ferilizers-sets>
 </mat-card>
 <mat-card class="content">
 

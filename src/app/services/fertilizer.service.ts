@@ -155,6 +155,7 @@ export class FertilizerService {
   }
 
   getRxLists(): Observable<FertilizerList[]> {
+    console.log(this.lists)
     return Observable.of(this.lists);
   }
 }

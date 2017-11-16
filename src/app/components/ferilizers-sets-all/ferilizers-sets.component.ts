@@ -10,12 +10,13 @@ import { FertilizerList } from '../../models/fertilizersList';
 })
 export class FerilizersSetsAllComponent implements OnInit {
   lists$: Observable<FertilizerList[]>;
+  selectedId: number;
   @HostBinding('attr.class') class = 'layout';
   constructor(private fertilizerService: FertilizerService) {
     this.lists$ = fertilizerService.getRxLists();
-   }
-
-  ngOnInit() {
   }
-
+  onListSelected(id) {
+    this.selectedId = +id;
+  }
+  ngOnInit() {}
 }
