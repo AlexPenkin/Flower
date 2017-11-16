@@ -10,7 +10,7 @@ import { Composition } from '../models/composition';
 
 @Injectable()
 export class FertilizerService {
-  fertilizers: Fertilizer[] = [];
+  fertilizers: Fertilizer[] = []; // Keeps all known fertilizers
   lists: FertilizerList[] = [];
   lists$: Subject<FertilizerList>;
   fertilizer: FertilizerList = new FertilizerList('1');
@@ -133,13 +133,20 @@ export class FertilizerService {
     this.lists.push(list);
   }
 
+
+  // Add new fertilizer to all known fertilizers
+  addNewFertilizer(fertilizer: Fertilizer): void {
+    this.fertilizers.push(fertilizer);
+    console.log(this.fertilizers)
+  }
+
   // Calculate current list in nutrient and set in Result attribute in FertilizerList class
   calcCurrentList(): void {
     this.currentList.result = this.currentList.calc();
     this.currentList$.next(this.currentList);
   }
 
-  get(): Fertilizer[] {
+  getAll(): Fertilizer[] {
     return this.fertilizers;
   }
 

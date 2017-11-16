@@ -1,0 +1,6 @@
+.result-table {
+    width: 100%;
+}
+.result-table td, th{
+    text-align: center;
+}

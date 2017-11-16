@@ -1,0 +1,18 @@
+<H3>Добавление удобрения</H3>
+
+<form [formGroup]=fertilizerForm ngSubmit="onSave()">
+    <mat-form-field>
+        <input matInput class="form-control" placeholder="Название" formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput class="form-control" placeholder="Производитель" formControlName="vendor">
+    </mat-form-field>
+    <div formGroupName="composition">
+        <mat-form-field *ngFor="let element of keys">
+            <input type="number" min="0" matInput class="form-control" placeholder={{element}} formControlName={{element}}>
+        </mat-form-field>
+    </div>
+    <button (click)="onSave()"  mat-raised-button type="submit" color="primary">Сохранить</button>
+</form>
+
+<p>Form value: {{ fertilizerForm.value | json }}</p>

@@ -1,5 +1,4 @@
-<app-select (onSelectOut)="onListSelect($event)" [model]='lists'></app-select>
-<app-ferilizer-detail-panel class='fertilizers-panel' *ngFor="let ferilizer of fertilizers$ | async" [fertilizer]="ferilizer"></app-ferilizer-detail-panel>
-<mat-form-field>
-    <input matInput placeholder="Литраж" min="0" type="number" [(ngModel)]="currentList.litrage" (ngModelChange)=onLitrageChange()>
-</mat-form-field>
+<mat-card class="ferilizer-card" *ngFor="let fertilizer of fertilizers">
+    <div>Имя: {{fertilizer.name | uppercase}}</div>
+    <div *ngIf="fertilizer.vendor">Производитель: {{fertilizer.vendor}} </div>
+</mat-card>

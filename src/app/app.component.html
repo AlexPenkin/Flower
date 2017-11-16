@@ -1,19 +1,19 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-toolbar (click)="sidenav.toggle()">Flower - when your plants thrives</mat-toolbar>
 <mat-sidenav-container class="sidenav-fab-container">
-  <mat-sidenav #sidenav mode="side" opened="false">
-    <mat-list>
-      <mat-list-item> Pepper </mat-list-item>
-      <mat-list-item> Salt </mat-list-item>
-      <mat-list-item> Paprika </mat-list-item>
-    </mat-list>
-  </mat-sidenav>
-  <div class="layout">
-    <mat-card class="categories">
-      <app-fertilizers></app-fertilizers>
-    </mat-card>
-    <mat-card class="content">
-      <app-calculations></app-calculations>
-    </mat-card>
-  </div>
+    <mat-sidenav #sidenav mode="side" opened="false">
+        <mat-list>
+            <mat-list-item>
+                <a routerLink="/calculations" routerLinkActive="active">Расчеты</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="/addFerilizer" routerLinkActive="active">Добавить удобрение</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="/fertilizers" routerLinkActive="active">Список всех удобрений</a>
+            </mat-list-item>
+            <mat-list-item> Paprika </mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <router-outlet></router-outlet>
 </mat-sidenav-container>

@@ -1,31 +1,3 @@
-
-body, html {
-    max-height: 100vh;
-    height: 100vh;
+.active {
+    color: red;
 }
-
-.layout {
-    height: calc(100vh - 64px);
-    max-height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.categories {
-    width: 300px;
-    max-width: 300px;
-    width: 100%;
-    overflow: auto;
-}
-
-.content {
-    width: calc(100% - 315px);  
-    overflow: auto;
-}
-
-mat-sidenav {
-    width: 350px;
-  }
