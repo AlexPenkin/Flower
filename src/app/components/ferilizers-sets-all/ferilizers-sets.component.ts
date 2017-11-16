@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { FertilizerService } from '../../services/fertilizer.service';
 import { FertilizerList } from '../../models/fertilizersList';
 
@@ -9,14 +10,14 @@ import { FertilizerList } from '../../models/fertilizersList';
   styleUrls: ['./ferilizers-sets.component.css']
 })
 export class FerilizersSetsAllComponent implements OnInit {
-  lists$: Observable<FertilizerList[]>;
-  selectedId: number;
+  lists: FertilizerList[];
+  selectedList: FertilizerList;
   @HostBinding('attr.class') class = 'layout';
   constructor(private fertilizerService: FertilizerService) {
-    this.lists$ = fertilizerService.getRxLists();
+    this.lists = fertilizerService.getLists();
   }
   onListSelected(id) {
-    this.selectedId = +id;
+    this.selectedList = this.lists.find(list => list.ID === +id);
   }
   ngOnInit() {}
 }

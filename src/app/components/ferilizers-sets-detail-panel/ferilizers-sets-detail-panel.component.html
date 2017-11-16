@@ -1,0 +1,9 @@
+<div class="list-detail" *ngIf="list">
+    <h2>{{list.name}}</h2>
+    <div class="list-detail-fertilizers" *ngFor="let fertilizer of list.list">
+        <mat-card class="ferilizer-card">
+            {{fertilizer.name}}
+        </mat-card>
+    </div>
+    <button class="add-list" mat-fab color="primary">+</button>
+</div>

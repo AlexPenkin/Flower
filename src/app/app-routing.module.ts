@@ -7,7 +7,7 @@ import { FerilizersSetsAllComponent } from './components/ferilizers-sets-all/fer
 
 const appRoutes: Routes = [
   { path: 'calculations', component: CalculationsComponent },
-  { path: 'addFerilizer', component: AddFerilizerComponent },
+  { path: 'addFertilizer', component: AddFerilizerComponent },
   { path: 'fertilizers', component: FertilizersAllComponent },
   { path: 'fertilizers-lists', component: FerilizersSetsAllComponent },
   { path: '', redirectTo: '/calculations', pathMatch: 'full' },

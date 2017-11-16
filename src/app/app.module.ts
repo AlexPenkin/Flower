@@ -20,6 +20,7 @@ import { FertilizersAllComponent } from './components/fertilizers-all/fertilizer
 import { FertilizersComponent } from './components/fertilizers/fertilizers.component';
 import { FerilizersSetsAllComponent } from './components/ferilizers-sets-all/ferilizers-sets.component';
 import { FerilizersSetsComponent } from './components/ferilizers-sets/ferilizers-sets.component';
+import { FerilizersSetsDetailPanelComponent } from './components/ferilizers-sets-detail-panel/ferilizers-sets-detail-panel.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FerilizersSetsComponent } from './components/ferilizers-sets/ferilizers
     FertilizersAllComponent,
     FertilizersComponent,
     FerilizersSetsAllComponent,
-    FerilizersSetsComponent
+    FerilizersSetsComponent,
+    FerilizersSetsDetailPanelComponent
   ],
   imports: [
     BrowserModule,
