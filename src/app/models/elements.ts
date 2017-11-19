@@ -156,8 +156,52 @@ export class Co extends Element {
   }
 }
 
-export class Mo extends Element {
-  molarMass = 95.96;
+export class Ni extends Element {
+  molarMass = 58.6934;
+  weightProportion = 0;
+  nutrient = 0;
+  constructor(value: number) {
+    super();
+    this.weightProportion = value;
+    this.nutrient = this.calcNutrient();
+  }
+}
+
+export class Al extends Element {
+  molarMass = 26.981;
+  weightProportion = 0;
+  nutrient = 0;
+  constructor(value: number) {
+    super();
+    this.weightProportion = value;
+    this.nutrient = this.calcNutrient();
+  }
+}
+
+export class Si extends Element {
+  molarMass = 28.085;
+  weightProportion = 0;
+  nutrient = 0;
+  constructor(value: number) {
+    super();
+    this.weightProportion = value;
+    this.nutrient = this.calcNutrient();
+  }
+}
+
+export class V extends Element {
+  molarMass = 50.9415;
+  weightProportion = 0;
+  nutrient = 0;
+  constructor(value: number) {
+    super();
+    this.weightProportion = value;
+    this.nutrient = this.calcNutrient();
+  }
+}
+
+export class Se extends Element {
+  molarMass = 78.971;
   weightProportion = 0;
   nutrient = 0;
   constructor(value: number) {

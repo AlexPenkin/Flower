@@ -1,20 +1,5 @@
-import {
-  Element,
-  N,
-  P,
-  K,
-  Ca,
-  Mg,
-  Fe,
-  S,
-  B,
-  Co,
-  Cu,
-  Mn,
-  Mo,
-  Zn
-} from './Elements';
 import * as elements from './Elements';
+import { Element } from './Elements';
 
 export interface IComposition {
   N?: Element;
@@ -30,6 +15,11 @@ export interface IComposition {
   Mn?: Element;
   Mo?: Element;
   Zn?: Element;
+  Ni?: Element;
+  Al?: Element;
+  Si?: Element;
+  V?: Element;
+  Se?: Element;
 }
 
 export class Composition implements IComposition {
