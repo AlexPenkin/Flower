@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, ObservableInput } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -11,151 +12,70 @@ import { Composition } from '../models/composition';
 
 @Injectable()
 export class FertilizerService {
-  fertilizers: Fertilizer[] = []; // Keeps all known fertilizers
-  lists: FertilizerList[] = [];
-  lists$: Subject<FertilizerList>;
-  fertilizer: FertilizerList = new FertilizerList('1');
-  fertilizerList: FertilizerList = new FertilizerList('Test');
-  fertilizerListTwo: FertilizerList = new FertilizerList('Test2');
-  fertilizerKeys: string[] = [];
-  currentList: FertilizerList;
-  currentList$: BehaviorSubject<FertilizerList> = new BehaviorSubject<
-    FertilizerList
-  >(this.currentList);
+    fertilizers: Fertilizer[] = []; // Keeps all known fertilizers
+    lists: FertilizerList[] = [];
+    lists$: Subject<FertilizerList>;
+    fertilizer: FertilizerList = new FertilizerList('1');
+    fertilizerList: FertilizerList = new FertilizerList('Test');
+    fertilizerListTwo: FertilizerList = new FertilizerList('Test2');
+    fertilizerKeys: string[] = [];
+    currentList: FertilizerList;
+    currentList$: BehaviorSubject<FertilizerList> = new BehaviorSubject<
+        FertilizerList
+    >(this.currentList);
 
-  constructor() {
-    this.fertilizer.add(
-      new Fertilizer(
-        'Буйский хуй',
-        'Буйский завод',
-        new Composition({ N: new N(100), P: new P(100), K: new K(100) })
-      )
-    );
-    this.fertilizerList.add(
-      new Fertilizer(
-        'Буйский хуй',
-        'Буйский завод',
-        new Composition({ N: new N(100), P: new P(100), K: new K(100) })
-      )
-    );
-    this.fertilizerList.add(
-      new Fertilizer(
-        'Calcium',
-        'Valagro',
-        new Composition({ N: new N(200), P: new P(40), K: new K(155) })
-      )
-    );
-    this.fertilizerList.add(
-      new Fertilizer(
-        'МФК',
-        'Советская залупа',
-        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
-      )
-    );
-    this.fertilizerList.add(
-      new Fertilizer(
-        'МФК',
-        'Советская залупа',
-        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
-      )
-    );
-    this.fertilizerList.add(
-      new Fertilizer(
-        'МФК2',
-        'Советская залупа',
-        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
-      )
-    );
-    this.fertilizerList.add(
-      new Fertilizer(
-        'Буйский хуй',
-        'Буйский завод',
-        new Composition({ N: new N(100), P: new P(100), K: new K(100) })
-      )
-    );
-    this.fertilizerListTwo.add(
-      new Fertilizer(
-        'Вонючий хуй',
-        'Буйский завод',
-        new Composition({ N: new N(100), P: new P(100), K: new K(100) })
-      )
-    );
-    this.fertilizerListTwo.add(
-      new Fertilizer(
-        'Calcium пизда',
-        'Valagro',
-        new Composition({ N: new N(200), P: new P(40), K: new K(155) })
-      )
-    );
-    this.fertilizerListTwo.add(
-      new Fertilizer(
-        'МФК Хуй',
-        'Советская залупа',
-        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
-      )
-    );
-    this.fertilizerListTwo.add(
-      new Fertilizer(
-        'МФК ыыы',
-        'Советская залупа',
-        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
-      )
-    );
-    this.fertilizerListTwo.add(
-      new Fertilizer(
-        'Мыыыыы',
-        'Советская залупа',
-        new Composition({ N: new N(121), P: new P(80), K: new K(160) })
-      )
-    );
-    this.fertilizerListTwo.add(
-      new Fertilizer(
-        'Буйский хуй',
-        'Буйский завод',
-        new Composition({ N: new N(666), P: new P(100), K: new K(100) })
-      )
-    );
-    this.addFertilizerList(this.fertilizer);
-    this.addFertilizerList(this.fertilizerList);
-    this.addFertilizerList(this.fertilizerListTwo);
-    this.currentList = this.lists[0];
-  }
+    constructor(private http: HttpClient) {
+        this.getAllNet();
+    }
 
-  setCurrentList(id: number) {
-    this.currentList = this.lists.find(el => el.ID === Number(id));
-    this.currentList$.next(this.currentList);
-  }
+    setCurrentList(id: number) {
+        this.currentList = this.lists.find(el => el.ID === Number(id));
+        this.currentList$.next(this.currentList);
+    }
 
-  getAllKnownElements() {
-    return Object.keys(new Composition());
-  }
+    getAllKnownElements() {
+        return Object.keys(new Composition());
+    }
 
-  addFertilizerList(list: FertilizerList) {
-    this.lists.push(list);
-  }
+    addFertilizerList(list: FertilizerList) {
+        this.lists.push(list);
+    }
 
+    // Add new fertilizer to all known fertilizers
+    addNewFertilizer(fertilizer: Fertilizer): void {
+        this.http
+            .post('/v1/fertilizer', JSON.stringify(fertilizer))
+            .subscribe(response => {
+                console.log(response);
+            });
+    }
 
-  // Add new fertilizer to all known fertilizers
-  addNewFertilizer(fertilizer: Fertilizer): void {
-    this.fertilizers.push(fertilizer);
-  }
+    // Calculate current list in nutrient and set in Result attribute in FertilizerList class
+    calcCurrentList(): void {
+        this.currentList.result = this.currentList.calc();
+        this.currentList$.next(this.currentList);
+    }
 
-  // Calculate current list in nutrient and set in Result attribute in FertilizerList class
-  calcCurrentList(): void {
-    this.currentList.result = this.currentList.calc();
-    this.currentList$.next(this.currentList);
-  }
+    getAllNet() {
+        this.http.get('/v1/fertilizers').subscribe((response: any) => {
+            this.fertilizers = response.data;
+        });
+    }
 
-  getAll(): Fertilizer[] {
-    return this.fertilizers;
-  }
+    getAll(): Fertilizer[] {
+        return this.fertilizers;
+    }
 
-  getLists(): FertilizerList[] {
-    return this.lists;
-  }
+    getLists(): FertilizerList[] {
+        return this.lists;
+    }
 
-  getRxLists(): Observable<FertilizerList[]> {
-    console.log(this.lists)
-    return Observable.of(this.lists);
-  }
+    getListsNet(): FertilizerList[] {
+        return this.lists;
+    }
+
+    getRxLists(): Observable<FertilizerList[]> {
+        console.log(this.lists);
+        return Observable.of(this.lists);
+    }
 }

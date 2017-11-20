@@ -4,6 +4,9 @@
     <mat-form-field>
         <input matInput class="form-control" placeholder="Название" formControlName="name">
     </mat-form-field>
+    <img src={{logoUrl}} alt="" class='img-logo-upload'>
+    <input class="input-hide" id="input-logo" type="file" (change)="onLogoUpload($event)" accept="image/*" />
+    <label for="input-logo" class="md-button md-raised mat-raised-button">Загрузить логотип производителя</label>
     <mat-form-field>
         <input matInput class="form-control" placeholder="Производитель" formControlName="vendor">
     </mat-form-field>
@@ -12,6 +15,8 @@
             <input type="number" min="0" matInput class="form-control" placeholder={{element}} formControlName={{element}}>
         </mat-form-field>
     </div>
+    <input class="input-hide" id="input-logo" multiple type="file" accept="image/*" />
+    <label for="input-logo" class="md-button md-raised mat-raised-button">Загрузить фотографии продукта</label>
     <button (click)="onSave()" mat-raised-button type="submit" color="primary">Сохранить</button>
 </form>
 

@@ -1,0 +1,8 @@
+.input-hide {
+    visibility: hidden;
+}
+.img-logo-upload {
+    width: 64px;
+    height: 64px;
+    background: grey;
+}

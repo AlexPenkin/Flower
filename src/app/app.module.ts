@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
-import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
+import { ReactiveFormsModule } from '@angular/forms'; // <-- #1 import module
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
@@ -23,30 +24,31 @@ import { FerilizersSetsComponent } from './components/ferilizers-sets/ferilizers
 import { FerilizersSetsDetailPanelComponent } from './components/ferilizers-sets-detail-panel/ferilizers-sets-detail-panel.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FertilizersListComponent,
-    CalculationsComponent,
-    CalculationsPanelComponent,
-    SelectComponent,
-    FerilizerDetailPanelComponent,
-    LayoutComponent,
-    AddFerilizerComponent,
-    FertilizersAllComponent,
-    FertilizersComponent,
-    FerilizersSetsAllComponent,
-    FerilizersSetsComponent,
-    FerilizersSetsDetailPanelComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    MaterialModule
-  ],
-  providers: [FertilizerService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        FertilizersListComponent,
+        CalculationsComponent,
+        CalculationsPanelComponent,
+        SelectComponent,
+        FerilizerDetailPanelComponent,
+        LayoutComponent,
+        AddFerilizerComponent,
+        FertilizersAllComponent,
+        FertilizersComponent,
+        FerilizersSetsAllComponent,
+        FerilizersSetsComponent,
+        FerilizersSetsDetailPanelComponent
+    ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MaterialModule
+    ],
+    providers: [FertilizerService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
