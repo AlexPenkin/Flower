@@ -14,7 +14,7 @@ export class FerilizersSetsAllComponent implements OnInit {
   selectedList: FertilizerList;
   @HostBinding('attr.class') class = 'layout';
   constructor(private fertilizerService: FertilizerService) {
-    this.lists = fertilizerService.getLists();
+    this.lists = fertilizerService.sets;
   }
   onListSelected(id) {
     this.selectedList = this.lists.find(list => list.ID === +id);

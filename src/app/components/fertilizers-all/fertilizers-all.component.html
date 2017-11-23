@@ -1,7 +1,8 @@
 <mat-card class="categories">
-    <app-fertilizers></app-fertilizers>
+    <app-fertilizers [fertilizers]="fertilizers" (onSelect)="onFertilizerSelect($event)"></app-fertilizers>
 </mat-card>
 <mat-card class="content">
+    <app-fertilizer-detail [currentFertilizer]="currentFertilizer"></app-fertilizer-detail>
     <a routerLink="/addFertilizer" routerLinkActive="active">
         <button class="add-fertilizer" mat-fab color="primary">+</button>
     </a>

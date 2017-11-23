@@ -10,11 +10,10 @@ export interface IFertilizer {
 }
 
 export class Fertilizer implements IFertilizer {
-  static ID = 1;
-  ID: number;
   name: string;
   composition: IComposition;
   constructor(
+    public ID: number,
     name: string,
     public vendor: string = '',
     composition?: IComposition,
@@ -22,7 +21,6 @@ export class Fertilizer implements IFertilizer {
     public requiredAmount: number = 1
   ) {
     this.name = name;
-    this.ID = Fertilizer.ID++;
     this.composition = composition || new Composition();
   }
 }

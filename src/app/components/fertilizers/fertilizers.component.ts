@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { FertilizerService } from '../../services/fertilizer.service';
-import {Fertilizer} from '../../models/fertilizer';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-fertilizers',
-  templateUrl: './fertilizers.component.html',
-  styleUrls: ['./fertilizers.component.css']
+    selector: 'app-fertilizers',
+    templateUrl: './fertilizers.component.html',
+    styleUrls: ['./fertilizers.component.css']
 })
 export class FertilizersComponent implements OnInit {
-  fertilizers: Fertilizer[];
-  fertilizerKeys: string[];
-  composition: string;
-  constructor(private fertilizerService: FertilizerService) {
-    this.fertilizerKeys = fertilizerService.getAllKnownElements();
-    this.fertilizers = this.fertilizerService.getAll();
-  }
+    composition: string;
+    @Output() onSelect = new EventEmitter();
+    @Input() fertilizers;
+    constructor() {}
 
-  ngOnInit() {}
+    onClick(id: string): void {
+        this.onSelect.emit(id);
+    }
+
+    ngOnInit() {}
 }

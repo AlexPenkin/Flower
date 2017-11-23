@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
 import { AppComponent } from './app.component';
-import { FertilizersListComponent } from './components/fertilizers-list/fertilizers.component';
+import { FertilizersListComponent } from './components/fertilizers-set/fertilizers.component';
 import { CalculationsComponent } from './components/calculations/calculations.component';
 import { CalculationsPanelComponent } from './components/calculations-panel/calculations.component';
 import { FertilizerService } from './services/fertilizer.service';
@@ -21,7 +21,8 @@ import { FertilizersAllComponent } from './components/fertilizers-all/fertilizer
 import { FertilizersComponent } from './components/fertilizers/fertilizers.component';
 import { FerilizersSetsAllComponent } from './components/ferilizers-sets-all/ferilizers-sets.component';
 import { FerilizersSetsComponent } from './components/ferilizers-sets/ferilizers-sets.component';
-import { FerilizersSetsDetailPanelComponent } from './components/ferilizers-sets-detail-panel/ferilizers-sets-detail-panel.component';
+import { FerilizersSetsDetailPanelComponent } from './components/ferilizers-sets-detail/ferilizers-sets-detail-panel.component';
+import { FertilizerDetailComponent } from './components/fertilizer-detail/fertilizer-detail.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { FerilizersSetsDetailPanelComponent } from './components/ferilizers-sets
         FertilizersComponent,
         FerilizersSetsAllComponent,
         FerilizersSetsComponent,
-        FerilizersSetsDetailPanelComponent
+        FerilizersSetsDetailPanelComponent,
+        FertilizerDetailComponent
     ],
     imports: [
         HttpClientModule,

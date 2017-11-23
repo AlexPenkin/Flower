@@ -6,45 +6,52 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import { Fertilizer } from '../models/fertilizer';
-import { Element, N, P, K } from '../models/Elements';
+import * as elements from '../models/Elements';
 import { FertilizerList } from '../models/fertilizersList';
 import { Composition } from '../models/composition';
 
 @Injectable()
 export class FertilizerService {
-    fertilizers: Fertilizer[] = []; // Keeps all known fertilizers
-    lists: FertilizerList[] = [];
-    lists$: Subject<FertilizerList>;
-    fertilizer: FertilizerList = new FertilizerList('1');
-    fertilizerList: FertilizerList = new FertilizerList('Test');
-    fertilizerListTwo: FertilizerList = new FertilizerList('Test2');
-    fertilizerKeys: string[] = [];
+    fertilizers$: Subject<Fertilizer[]> = new Subject;
+    sets: FertilizerList[] = [];
+    fertilizerList: FertilizerList = new FertilizerList('1');
     currentList: FertilizerList;
-    currentList$: BehaviorSubject<FertilizerList> = new BehaviorSubject<
-        FertilizerList
-    >(this.currentList);
+    currentList$: BehaviorSubject<FertilizerList>;
 
     constructor(private http: HttpClient) {
         this.getAllNet();
+        this.currentList = new FertilizerList('Test');
+        this.currentList$ = new BehaviorSubject<FertilizerList>(
+            this.currentList
+        );
+        this.sets.push(this.fertilizerList);
     }
 
     setCurrentList(id: number) {
-        this.currentList = this.lists.find(el => el.ID === Number(id));
+        this.currentList = this.sets.find(el => el.ID === Number(id));
         this.currentList$.next(this.currentList);
     }
 
-    getAllKnownElements() {
+    getAllKnownElements(): string[] {
         return Object.keys(new Composition());
     }
 
     addFertilizerList(list: FertilizerList) {
-        this.lists.push(list);
+        this.sets.push(list);
     }
 
     // Add new fertilizer to all known fertilizers
     addNewFertilizer(fertilizer: Fertilizer): void {
+        const compatibleWithServer = {
+            name: fertilizer.name,
+            vendor: fertilizer.vendor || ''
+        };
+        for (const element of this.getAllKnownElements()) {
+            compatibleWithServer[element] =
+                fertilizer.composition[element].weightProportion;
+        }
         this.http
-            .post('/v1/fertilizer', JSON.stringify(fertilizer))
+            .post('/v1/fertilizer', JSON.stringify(compatibleWithServer))
             .subscribe(response => {
                 console.log(response);
             });
@@ -58,24 +65,33 @@ export class FertilizerService {
 
     getAllNet() {
         this.http.get('/v1/fertilizers').subscribe((response: any) => {
-            this.fertilizers = response.data;
+            this.fertilizers$.next(
+                response.data.map(fertilizer => {
+                    const keys = this.getAllKnownElements();
+                    const composition = {};
+                    for (const element of keys) {
+                        if (element.length <= 2) {
+                            composition[element] = new elements[element](
+                                fertilizer[element]
+                            );
+                        }
+                    }
+                    this.fertilizerList.add(
+                        new Fertilizer(
+                            fertilizer.ID,
+                            fertilizer.name,
+                            fertilizer.vendor,
+                            composition
+                        )
+                    );
+                    return new Fertilizer(
+                        fertilizer.ID,
+                        fertilizer.name,
+                        fertilizer.vendor,
+                        composition
+                    );
+                })
+            );
         });
-    }
-
-    getAll(): Fertilizer[] {
-        return this.fertilizers;
-    }
-
-    getLists(): FertilizerList[] {
-        return this.lists;
-    }
-
-    getListsNet(): FertilizerList[] {
-        return this.lists;
-    }
-
-    getRxLists(): Observable<FertilizerList[]> {
-        console.log(this.lists);
-        return Observable.of(this.lists);
     }
 }

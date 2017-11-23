@@ -7,7 +7,7 @@ export interface IFertilizerList {
   name: string;
   culture: string;
   litrage: number;
-  list: Fertilizer[];
+  fertilizers: Fertilizer[];
   reciepts?: number;
   result: Composition;
   calc(): Composition;
@@ -20,7 +20,7 @@ export class FertilizerList implements IFertilizerList {
   ID: number;
   constructor(
     public name: string,
-    public list: Fertilizer[] = [],
+    public fertilizers: Fertilizer[] = [],
     public culture: string = 'green',
     public litrage: number = 1,
     public reciepts: number = 2
@@ -30,26 +30,26 @@ export class FertilizerList implements IFertilizerList {
   }
 
   get(): Fertilizer[] {
-    return this.list;
+    return this.fertilizers;
   }
 
   add(fert: any) {
     if (fert && Array.isArray(fert)) {
-      this.list = [...this.list, ...fert];
+      this.fertilizers = [...this.fertilizers, ...fert];
     } else {
       if (
-        this.list.length > 0 &&
-        this.list.some(value => value.name === fert.name)
+        this.fertilizers &&
+        this.fertilizers.some(value => value.name === fert.name)
       ) {
         return console.error(`${fert.name}: Запись с таким именем уже имеется`);
       }
-      this.list.push(fert);
+      this.fertilizers.push(fert);
     }
     this.result = this.calc();
   }
 
   calc(): Composition {
-    return this.list.reduce((acc, curr) => {
+    return this.fertilizers.reduce((acc, curr) => {
       for (const key in acc) {
         if (acc[key] instanceof elements.Element) {
           acc[key].nutrient += curr.composition[key].nutrient * curr.amount;
