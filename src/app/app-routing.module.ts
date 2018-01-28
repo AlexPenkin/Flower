@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CalculationsComponent } from './components/calculations/calculations.component';
-import { AddFerilizerComponent } from './components/add-ferilizer/add-ferilizer.component';
-import { FertilizersAllComponent } from './components/fertilizers-all/fertilizers-all.component';
-import { FerilizersSetsAllComponent } from './components/ferilizers-sets-all/ferilizers-sets.component';
-import { FertilizerDetailComponent } from './components/fertilizer-detail/fertilizer-detail.component';
+import { AddFerilizerComponent } from './components/fertilizer/adding-ferilizer//adding-ferilizer.component';
+import { FertilizersPageComponent } from './components/fertilizer/fertilizers-page/fertilizers-page.component';
+import { SetsPageComponent } from './components/set/sets-page/sets-page.component';
+import { FertilizerCardDetailComponent } from './components/fertilizer/fertilizer-card-detail/fertilizer-card-detail.component';
 
 const appRoutes: Routes = [
   { path: 'calculations', component: CalculationsComponent },
   { path: 'addFertilizer', component: AddFerilizerComponent },
-  { path: 'fertilizers', component: FertilizersAllComponent },
-  { path: 'fertilizer', component: FertilizerDetailComponent },
-  { path: 'fertilizers-lists', component: FerilizersSetsAllComponent },
+  { path: 'fertilizers', component: FertilizersPageComponent },
+  { path: 'fertilizer', component: FertilizerCardDetailComponent },
+  { path: 'fertilizers-lists', component: SetsPageComponent },
   { path: '', redirectTo: '/calculations', pathMatch: 'full' },
   { path: '**', component: CalculationsComponent }
 ];

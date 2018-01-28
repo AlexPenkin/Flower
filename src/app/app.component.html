@@ -1,5 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<mat-toolbar (click)="sidenav.toggle()">Flower - when your plants thrives</mat-toolbar>
+<mat-toolbar class="header" (click)="sidenav.toggle()">
+    <div class="header__title">Flower - when your plants thrives</div>
+    <div class="header__auth" *ngIf="!isAuthenticated()" (click)="onAuthClick($event)">Войти</div>
+    <div class="auth__section">
+        <app-user-profile *ngIf="isAuthenticated()"></app-user-profile>
+        <div class="header__auth" *ngIf="isAuthenticated()" (click)="onLogOutClick($event)">Выйти</div>
+    </div>
+
+</mat-toolbar>
 <mat-sidenav-container class="sidenav-fab-container">
     <mat-sidenav #sidenav mode="side" opened="false">
         <mat-list>

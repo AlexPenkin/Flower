@@ -1,0 +1,6 @@
+<div class="loading" *ngIf="!fertilizers">Здесь пока нет удобрений, нажмите  кнопку с плюсиком что бы добавить</div>
+<mat-card class="ferilizer-card" (click)="onClick(fertilizer.ID)" *ngFor="let fertilizer of fertilizers">
+    <div>Имя: {{fertilizer.name | uppercase}}</div>
+    <div *ngIf="fertilizer.vendor">Производитель: {{fertilizer.vendor}} </div>
+    <span (click)="delete(fertilizer.ID); $event.stopPropagation()" class="fertilizer-card-cross">X</span>
+</mat-card>

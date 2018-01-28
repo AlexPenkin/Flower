@@ -1,0 +1,7 @@
+.fertilizer-card-cross {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: rgb(211, 6, 6);
+    cursor: pointer;
+}

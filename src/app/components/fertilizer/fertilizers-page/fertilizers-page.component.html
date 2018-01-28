@@ -1,0 +1,9 @@
+<mat-card class="categories">
+    <app-fertilizers-catatlog [fertilizers]="fertilizers" (onSelect)="onFertilizerSelect($event)" (onDelete)="onFertilizerDelete($event);"></app-fertilizers-catatlog>
+</mat-card>
+<mat-card class="content">
+    <app-fertilizer-card-detail [currentFertilizer]="currentFertilizer"></app-fertilizer-card-detail>
+    <a routerLink="/addFertilizer" routerLinkActive="active">
+        <button class="add-fertilizer" mat-fab color="primary">+</button>
+    </a>
+</mat-card>

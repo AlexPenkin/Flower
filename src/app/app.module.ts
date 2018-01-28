@@ -5,41 +5,62 @@ import { ReactiveFormsModule } from '@angular/forms'; // <-- #1 import module
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { Http, RequestOptions } from '@angular/http';
+import { HttpModule } from '@angular/http';
+
+import { FertilizerService } from './services/fertilizer.service';
+import { AuthService } from './services/auth.service';
+import { CalcluationService } from './services/calcluation.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
+
+// tslint:disable:max-line-length
 import { AppComponent } from './app.component';
-import { FertilizersListComponent } from './components/fertilizers-set/fertilizers.component';
+import { SelectComponent } from './components/common/select/select.component';
+import { LayoutComponent } from './components/common/layout/layout.component';
+import { UserProfileComponent } from './components/common/user-profile/user-profile.component';
 import { CalculationsComponent } from './components/calculations/calculations.component';
-import { CalculationsPanelComponent } from './components/calculations-panel/calculations.component';
-import { FertilizerService } from './services/fertilizer.service';
-import { SelectComponent } from './components/select/select.component';
-import { FerilizerDetailPanelComponent } from './components/ferilizer-detail-panel/ferilizer-detail-panel.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { AddFerilizerComponent } from './components/add-ferilizer/add-ferilizer.component';
-import { FertilizersAllComponent } from './components/fertilizers-all/fertilizers-all.component';
-import { FertilizersComponent } from './components/fertilizers/fertilizers.component';
-import { FerilizersSetsAllComponent } from './components/ferilizers-sets-all/ferilizers-sets.component';
-import { FerilizersSetsComponent } from './components/ferilizers-sets/ferilizers-sets.component';
-import { FerilizersSetsDetailPanelComponent } from './components/ferilizers-sets-detail/ferilizers-sets-detail-panel.component';
-import { FertilizerDetailComponent } from './components/fertilizer-detail/fertilizer-detail.component';
+import { CalculationsElementsTableComponent } from './components/calculation/calculations-elements-table/calculations-elements-table.component';
+import { AddFerilizerComponent } from './components/fertilizer/adding-ferilizer/adding-ferilizer.component';
+import { FerilizerCardPreviewCalculationsComponent } from './components/fertilizer/ferilizer-card-preview-calculations/ferilizer-card-preview-calculations.component';
+import { FertilizerCardDetailComponent } from './components/fertilizer/fertilizer-card-detail/fertilizer-card-detail.component';
+import { FertilizersCatatlogComponent } from './components/fertilizer/fertilizers-catalog/fertilizers-catalog.component';
+import { FertilizersPageComponent } from './components/fertilizer/fertilizers-page/fertilizers-page.component';
+import { SetsPageComponent } from './components/set/sets-page/sets-page.component';
+import { SetsCatatlogComponent } from './components/set/sets-catalog/sets-catalog.component';
+import { SetCardDetailComponent } from './components/set/set-card-detail/set-card-detail.component';
+import { SetCardDetailCalculationsComponent } from './components/set/set-card-detail-calculations/set-card-detail-calculations.component';
+
+// tslint:enable:max-line-length
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+    return new AuthHttp(
+        new AuthConfig({
+            tokenGetter: () => localStorage.getItem('access_token')
+        }),
+        http,
+        options
+    );
+}
 
 @NgModule({
     declarations: [
         AppComponent,
-        FertilizersListComponent,
         CalculationsComponent,
-        CalculationsPanelComponent,
+        CalculationsElementsTableComponent,
         SelectComponent,
-        FerilizerDetailPanelComponent,
+        FerilizerCardPreviewCalculationsComponent,
         LayoutComponent,
         AddFerilizerComponent,
-        FertilizersAllComponent,
-        FertilizersComponent,
-        FerilizersSetsAllComponent,
-        FerilizersSetsComponent,
-        FerilizersSetsDetailPanelComponent,
-        FertilizerDetailComponent
+        UserProfileComponent,
+        FertilizerCardDetailComponent,
+        FertilizersCatatlogComponent,
+        FertilizersPageComponent,
+        SetsPageComponent,
+        SetsCatatlogComponent,
+        SetCardDetailComponent,
+        SetCardDetailCalculationsComponent
     ],
     imports: [
         HttpClientModule,
@@ -48,9 +69,19 @@ import { FertilizerDetailComponent } from './components/fertilizer-detail/fertil
         BrowserAnimationsModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        MaterialModule
+        MaterialModule,
+        HttpModule
     ],
-    providers: [FertilizerService],
+    providers: [
+        FertilizerService,
+        AuthService,
+        CalcluationService,
+        {
+            provide: AuthHttp,
+            useFactory: authHttpServiceFactory,
+            deps: [Http, RequestOptions]
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

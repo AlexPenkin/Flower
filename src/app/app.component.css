@@ -1,3 +1,18 @@
 .active {
     color: red;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__auth {
+    cursor: pointer;
+    padding: 0 20px;
+}
+
+.auth__section {
+    display: flex;
+    align-items: center;
+}

@@ -13,10 +13,11 @@ export class Fertilizer implements IFertilizer {
   name: string;
   composition: IComposition;
   constructor(
-    public ID: number,
+    public ID: number = 0,
     name: string,
     public vendor: string = '',
     composition?: IComposition,
+    public category: string = '',
     public amount: number = 1,
     public requiredAmount: number = 1
   ) {

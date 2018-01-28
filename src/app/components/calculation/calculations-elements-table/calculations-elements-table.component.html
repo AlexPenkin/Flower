@@ -1,0 +1,16 @@
+<div class="result">
+  <table class="table result-table">
+    <thead class="thead-default">
+      <tr>
+        <th *ngFor="let key of keys">
+          {{key}}
+        </th>
+      </tr>
+    </thead>
+    <tr>
+      <td *ngFor="let key of keys">
+        {{result[key].nutrient | number:'1.0-2'}}
+      </td>
+    </tr>
+  </table>
+</div>
