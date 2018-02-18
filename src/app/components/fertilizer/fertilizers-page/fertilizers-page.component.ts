@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { FertilizerService } from '../../../services/fertilizer.service';
-import { Fertilizer } from '../../../models/fertilizer';
+import { IFertilizer } from '../../../models/fertilizer';
 
 @Component({
     selector: 'app-fertilizers-page',
@@ -9,9 +9,9 @@ import { Fertilizer } from '../../../models/fertilizer';
 })
 export class FertilizersPageComponent implements OnInit {
     @HostBinding('attr.class') class = 'layout';
-    fertilizers: Fertilizer[];
+    fertilizers: IFertilizer[];
     fertilizerKeys: string[];
-    currentFertilizer: Fertilizer;
+    currentFertilizer: IFertilizer;
 
     constructor(private fertilizerService: FertilizerService) {
         this.fertilizerKeys = fertilizerService.getAllKnownElements();
@@ -20,16 +20,16 @@ export class FertilizersPageComponent implements OnInit {
         });
     }
 
-    onFertilizerSelect(id: number | string) {
-      this.currentFertilizer = this.fertilizers.find( fert => fert.ID === +id);
+    onFertilizerSelect(id: number) {
+        this.currentFertilizer = this.fertilizers.find(fert => fert.ID === +id);
     }
 
     onFertilizerDelete(id: string): boolean {
-      this.fertilizerService.deleteFertilizer(id);
-      return false;
+        this.fertilizerService.deleteFertilizer(id);
+        return false;
     }
 
     ngOnInit() {
-        this.fertilizerService.getAllAsync();
+        this.fertilizerService.getAllFertilizers().subscribe(fertilizers => this.fertilizers = fertilizers);
     }
 }

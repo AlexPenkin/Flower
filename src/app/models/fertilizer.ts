@@ -6,14 +6,13 @@ export interface IFertilizer {
   requiredAmount: number;
   name: string;
   vendor: string;
-  composition: IComposition;
+  composition?: IComposition;
 }
 
 export class Fertilizer implements IFertilizer {
   name: string;
   composition: IComposition;
   constructor(
-    public ID: number = 0,
     name: string,
     public vendor: string = '',
     composition?: IComposition,

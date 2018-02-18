@@ -1,0 +1,8 @@
+<mat-card class="categories">
+  <app-fertilizers-catatlog [fertilizers]="fertilizers" (onSelect)="onFertilizerSelect($event)"></app-fertilizers-catatlog>
+</mat-card>
+<mat-card class="content">
+  <app-set-card-detail [list]="set"></app-set-card-detail>
+</mat-card>
+<button (click)="onSave()" mat-raised-button type="submit" color="primary">Сохранить</button>
+

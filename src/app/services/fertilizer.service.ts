@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthHttp } from 'angular2-jwt';
 import { AuthService } from './auth.service';
 import { Observable, ObservableInput } from 'rxjs/Observable';
+import 'rxjs/add/operator/share';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Fertilizer } from '../models/fertilizer';
@@ -18,13 +19,13 @@ const HOST = `http://localhost:9000`;
 @Injectable()
 export class FertilizerService {
     fertilizers$: Subject<Fertilizer[]> = new Subject();
+    allFertilizers$: Subject<Fertilizer[]> = new Subject();
     lists: FertilizerList[] = [];
     fertilizerList: FertilizerList = new FertilizerList('1');
     currentList: FertilizerList;
     currentList$: BehaviorSubject<FertilizerList>;
 
     constructor(public http: AuthHttp, public authServise: AuthService) {
-        this.getAllAsync();
         this.currentList = new FertilizerList('Test');
         this.currentList$ = new BehaviorSubject<FertilizerList>(
             this.currentList
@@ -63,41 +64,13 @@ export class FertilizerService {
 
     deleteFertilizer(id: string) {
         this.http.delete(`/v1/fertilizer/${id}`).subscribe(response => {
-            this.getAllAsync();
+            this.getAllFertilizers();
         });
     }
 
-    getAllAsync() {
-        if (this.authServise.isAuthenticated()) {
-            this.http.get(`/v1/fertilizers`).subscribe((response: Response) => {
-                this.fertilizers$.next(
-                    response.json().data.map(fertilizer => {
-                        const keys = this.getAllKnownElements();
-                        const composition = {};
-                        for (const element of keys) {
-                            if (element.length <= 2) {
-                                composition[element] = new elements[element](
-                                    fertilizer[element]
-                                );
-                            }
-                        }
-                        this.fertilizerList.add(
-                            new Fertilizer(
-                                fertilizer.ID,
-                                fertilizer.name,
-                                fertilizer.vendor,
-                                composition
-                            )
-                        );
-                        return new Fertilizer(
-                            fertilizer.ID,
-                            fertilizer.name,
-                            fertilizer.vendor,
-                            composition
-                        );
-                    })
-                );
-            });
-        }
+    getAllFertilizers(): Observable<Fertilizer[]> {
+        return this.http.get(`/v1/fertilizers`)
+            .map(response => response.json().data)
+            .share();
     }
 }

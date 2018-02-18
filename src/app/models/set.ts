@@ -8,7 +8,7 @@ export interface IFertilizerList {
     name: string;
     culture: string;
     litrage: number;
-    fertilizers: Fertilizer[];
+    fertilizers: IFertilizer[];
     reciepts?: number;
     result: Composition;
     add(fert: Fertilizer);

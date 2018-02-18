@@ -12,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { FertilizerService } from './services/fertilizer.service';
 import { AuthService } from './services/auth.service';
 import { CalcluationService } from './services/calcluation.service';
+import { SetService } from './services/set.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
@@ -32,6 +33,7 @@ import { SetsPageComponent } from './components/set/sets-page/sets-page.componen
 import { SetsCatatlogComponent } from './components/set/sets-catalog/sets-catalog.component';
 import { SetCardDetailComponent } from './components/set/set-card-detail/set-card-detail.component';
 import { SetCardDetailCalculationsComponent } from './components/set/set-card-detail-calculations/set-card-detail-calculations.component';
+import { SetCreateEditComponent } from './components/set/set-create-edit/set-create-edit.component';
 
 // tslint:enable:max-line-length
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -60,7 +62,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         SetsPageComponent,
         SetsCatatlogComponent,
         SetCardDetailComponent,
-        SetCardDetailCalculationsComponent
+        SetCardDetailCalculationsComponent,
+        SetCreateEditComponent
     ],
     imports: [
         HttpClientModule,
@@ -76,6 +79,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         FertilizerService,
         AuthService,
         CalcluationService,
+        SetService,
         {
             provide: AuthHttp,
             useFactory: authHttpServiceFactory,

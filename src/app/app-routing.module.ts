@@ -5,6 +5,7 @@ import { AddFerilizerComponent } from './components/fertilizer/adding-ferilizer/
 import { FertilizersPageComponent } from './components/fertilizer/fertilizers-page/fertilizers-page.component';
 import { SetsPageComponent } from './components/set/sets-page/sets-page.component';
 import { FertilizerCardDetailComponent } from './components/fertilizer/fertilizer-card-detail/fertilizer-card-detail.component';
+import { SetCreateEditComponent } from './components/set/set-create-edit/set-create-edit.component';
 
 const appRoutes: Routes = [
   { path: 'calculations', component: CalculationsComponent },
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   { path: 'fertilizers', component: FertilizersPageComponent },
   { path: 'fertilizer', component: FertilizerCardDetailComponent },
   { path: 'fertilizers-lists', component: SetsPageComponent },
+  { path: 'setCreate', component: SetCreateEditComponent },
   { path: '', redirectTo: '/calculations', pathMatch: 'full' },
   { path: '**', component: CalculationsComponent }
 ];
