@@ -6,6 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { AuthService } from './auth.service';
 import { Observable, ObservableInput } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/multicast';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Fertilizer } from '../models/fertilizer';
@@ -68,9 +69,12 @@ export class FertilizerService {
         });
     }
 
-    getAllFertilizers(): Observable<Fertilizer[]> {
-        return this.http.get(`/v1/fertilizers`)
+    getAllFertilizers(): void {
+        this.http
+            .get(`/v1/fertilizers`)
             .map(response => response.json().data)
-            .share();
+            .subscribe(fertilizers => {
+                this.fertilizers$.next(fertilizers);
+            });
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { FertilizerService } from '../../../services/fertilizer.service';
+import { SetService } from '../../../services/set.service';
 import { FertilizerList } from '../../../models/set';
 
 @Component({
@@ -10,14 +10,15 @@ import { FertilizerList } from '../../../models/set';
     styleUrls: ['./sets-page.component.css']
 })
 export class SetsPageComponent implements OnInit {
-    lists: FertilizerList[];
+    allSets: FertilizerList[];
     selectedList: FertilizerList;
     @HostBinding('attr.class') class = 'layout';
-    constructor(private fertilizerService: FertilizerService) {
-        this.lists = fertilizerService.lists;
-    }
+    constructor(private setService: SetService) {}
     onListSelected(id) {
-        this.selectedList = this.lists.find(list => list.ID === +id);
+        this.selectedList = this.allSets.find(set => set.ID === +id);
     }
-    ngOnInit() {}
+    ngOnInit() {
+        this.setService.allSets$.subscribe(sets => (this.allSets = sets));
+        this.setService.getAllSets();
+    }
 }

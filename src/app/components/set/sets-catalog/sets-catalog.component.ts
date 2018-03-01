@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./sets-catalog.component.css']
 })
 export class SetsCatatlogComponent implements OnInit {
-    @Input() lists;
+    @Input() sets;
     @Output() listSelected = new EventEmitter();
     constructor() {}
 

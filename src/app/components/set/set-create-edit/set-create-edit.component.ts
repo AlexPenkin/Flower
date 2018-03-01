@@ -7,28 +7,34 @@ import { IFertilizer } from '../../../models/fertilizer';
 import { Response } from '@angular/http';
 
 @Component({
-  selector: 'app-set-create-edit',
-  templateUrl: './set-create-edit.component.html',
-  styleUrls: ['./set-create-edit.component.css']
+    selector: 'app-set-create-edit',
+    templateUrl: './set-create-edit.component.html',
+    styleUrls: ['./set-create-edit.component.css']
 })
 export class SetCreateEditComponent implements OnInit {
-  fertilizers: Array<IFertilizer> = [];
-  set: FertilizerList = new FertilizerList('New');
-  @HostBinding('attr.class') class = 'layout';
-  constructor(private fertilizerService: FertilizerService, private setService: SetService) { }
+    fertilizers: Array<IFertilizer> = [];
+    set: FertilizerList = new FertilizerList('New');
+    @HostBinding('attr.class') class = 'layout';
+    constructor(
+        private fertilizerService: FertilizerService,
+        private setService: SetService
+    ) {}
 
-  ngOnInit() {
-    this.fertilizerService.getAllFertilizers()
-      .subscribe(fertilizers => this.fertilizers = fertilizers);
-  }
+    ngOnInit() {
+        this.fertilizerService.fertilizers$.subscribe(fertilizers => {
+            this.fertilizers = fertilizers;
+        });
+        this.fertilizerService.getAllFertilizers();
+    }
 
-  onFertilizerSelect(id) {
-    const desiredFertilizer = this.fertilizers.find(fertilizer => fertilizer.ID === id);
-    this.set.add(desiredFertilizer);
-  }
+    onFertilizerSelect(id) {
+        const desiredFertilizer = this.fertilizers.find(
+            fertilizer => fertilizer.ID === id
+        );
+        this.set.add(desiredFertilizer);
+    }
 
-  onSave() {
-    this.setService.save(this.set);
-  }
-
+    onSave() {
+        this.setService.save(this.set);
+    }
 }

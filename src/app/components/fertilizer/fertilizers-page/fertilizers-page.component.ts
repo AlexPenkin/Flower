@@ -30,6 +30,15 @@ export class FertilizersPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.fertilizerService.getAllFertilizers().subscribe(fertilizers => this.fertilizers = fertilizers);
+        this.fertilizerService.fertilizers$.subscribe(fertilizers => {
+            console.log(fertilizers);
+            console.log('123123');
+            this.fertilizers = fertilizers;
+        });
+        this.getFertilizers();
+    }
+
+    getFertilizers() {
+        this.fertilizerService.getAllFertilizers();
     }
 }

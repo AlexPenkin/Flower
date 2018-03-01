@@ -1,5 +1,5 @@
 <mat-card class="categories">
-    <app-sets-catalog [lists]="lists" (listSelected)="onListSelected($event)"></app-sets-catalog>
+    <app-sets-catalog [sets]="allSets" (listSelected)="onListSelected($event)"></app-sets-catalog>
 </mat-card>
 <mat-card class="content">
     <app-set-card-detail [list]="selectedList"></app-set-card-detail>
